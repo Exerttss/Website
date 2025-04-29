@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Brock Engineering | Quick-Turn Tested PCBs</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Alpine.js for mobile menu -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Favicon (replace with your own) -->
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body class="font-sans text-gray-800 leading-relaxed">
+
+  <!-- Header -->
+  <header class="bg-white shadow">
+    <div class="max-w-6xl mx-auto px-4 py-6 flex items-center justify-between">
+      <h1 class="text-2xl font-bold">
+        <span class="text-indigo-600">Brock</span> Engineering
+      </h1>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex gap-8 text-sm">
+        <a href="#why" class="hover:text-indigo-600">Why Us</a>
+        <a href="#how" class="hover:text-indigo-600">How It Works</a>
+        <a href="#contact" class="hover:text-indigo-600">Contact</a>
+      </nav>
+
+      <!-- Mobile burger -->
+      <button class="md:hidden" @click="open = !open" x-data="{open:false}">
+        <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
+             d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg x-show="open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
+             d="M6 18L18 6M6 6l12 12"/></svg>
+
+        <!-- Mobile menu -->
+        <div x-show="open" @click.away="open=false"
+             class="absolute top-16 right-4 bg-white shadow-lg rounded-xl p-6 space-y-4 md:hidden">
+          <a href="#why" class="block" @click="open=false">Why Us</a>
+          <a href="#how" class="block" @click="open=false">How It Works</a>
+          <a href="#contact" class="block" @click="open=false">Contact</a>
+        </div>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-indigo-600 to-indigo-400 text-white">
+    <div class="max-w-6xl mx-auto px-4 py-24 text-center">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Boards you can trust, delivered on Scottish time.</h2>
+      <p class="max-w-xl mx-auto mb-8 text-lg">
+        Quick-turn bare PCBs, 100 % electrically tested in Edinburgh and on your bench in 5 days—without
+        the import hassle.
+      </p>
+      <a href="#contact"
+         class="inline-block bg-white text-indigo-600 font-semibold px-8 py-3 rounded-full shadow hover:shadow-lg transition">
+        Get a Same-Day Quote
+      </a>
+    </div>
+  </section>
+
+  <!-- Why us -->
+  <section id="why" class="max-w-6xl mx-auto px-4 py-20">
+    <h3 class="text-3xl font-bold text-center mb-12">Why teams switch to Brock Engineering</h3>
+    <div class="grid md:grid-cols-4 gap-8">
+      <div class="bg-gray-50 p-6 rounded-2xl shadow-sm text-center">
+        <h4 class="font-semibold mb-2">100 % Test</h4>
+        <p>Every net verified on a flying-probe rig <em>before</em> it leaves Edinburgh.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-2xl shadow-sm text-center">
+        <h4 class="font-semibold mb-2">5-Day Lead-Time</h4>
+        <p>Prototype panels collected Monday, delivered to your lab Friday.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-2xl shadow-sm text-center">
+        <h4 class="font-semibold mb-2">Single UK Invoice</h4>
+        <p>No foreign wire transfers, no customs forms—just one PO in GBP.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-2xl shadow-sm text-center">
+        <h4 class="font-semibold mb-2">Engineer-to-Engineer</h4>
+        <p>Free DFM sanity-check by a fellow E & E engineer, not a call-centre script.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="bg-gray-100 py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <h3 class="text-3xl font-bold text-center mb-12">Our 3-Step Process</h3>
+      <ol class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-8">
+        <li class="bg-white p-6 rounded-2xl shadow-md">
+          <span class="text-indigo-600 text-4xl font-bold">1</span>
+          <h4 class="font-semibold mt-2 mb-1">Upload Gerbers</h4>
+          <p>Send your zip file via the form below (NDA available on request).</p>
+        </li>
+        <li class="bg-white p-6 rounded-2xl shadow-md">
+          <span class="text-indigo-600 text-4xl font-bold">2</span>
+          <h4 class="font-semibold mt-2 mb-1">Same-Day Quote & DFM</h4>
+          <p>You get price, lead-time and free design feedback in < 24 h.</p>
+        </li>
+        <li class="bg-white p-6 rounded-2xl shadow-md">
+          <span class="text-indigo-600 text-4xl font-bold">3</span>
+          <h4 class="font-semibold mt-2 mb-1">Tested Boards Delivered</h4>
+          <p>We test, pack and courier boards to your door—ready for assembly.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Contact / quote form -->
+  <section id="contact" class="max-w-4xl mx-auto px-4 py-20">
+    <h3 class="text-3xl font-bold text-center mb-8">Request Your Quote</h3>
+    <form action="https://formspree.io/f/your-form-id" method="POST"
+          class="bg-white p-8 rounded-2xl shadow space-y-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <input required type="text" name="name" placeholder="Name"
+               class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <input required type="email" name="_replyto" placeholder="Email"
+               class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
+      </div>
+      <div>
+        <input type="file" name="attachment"
+               class="border border-gray-300 rounded-lg p-3 w-full file:bg-indigo-600 file:text-white file:px-4 file:py-2 file:rounded file:border-0">
+      </div>
+      <textarea name="message" rows="4" placeholder="Board details, layer count, qty…"
+                class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+
+      <!-- Honeypot -->
+      <input type="text" name="_gotcha" style="display:none">
+
+      <button type="submit"
+              class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg shadow transition">
+        Send My Files Securely
+      </button>
+    </form>
+
+    <p class="text-center text-sm mt-6 text-gray-500">
+      Prefer e-mail? <a href="mailto:quote@brock-eng.co.uk" class="underline">quote@brock-eng.co.uk</a>
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 text-sm py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p>&copy; <span id="year"></span> Brock Engineering Ltd. Company No. SC123456. All rights reserved.</p>
+      <p>Made with &lt;3 in Edinburgh.</p>
+    </div>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </footer>
+</body>
+</html>
