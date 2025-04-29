@@ -1,156 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Brock Engineering | Quick-Turn Tested PCBs</title>
-  <!-- Tailwind CDN -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brock Engineering | Quick‑Turn Tested PCBs</title>
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Alpine.js for mobile menu -->
+  <!-- AOS (Animate On Scroll) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <script defer src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <!-- Alpine JS -->
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-  <!-- Favicon (replace with your own) -->
-  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" href="brock_logo.png" />
+  <style>
+    /* custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-thumb { background:#6366f1; border-radius:4px; }
+  </style>
 </head>
-<body class="font-sans text-gray-800 leading-relaxed">
-
-  <!-- Header -->
-  <header class="bg-white shadow">
-    <div class="max-w-6xl mx-auto px-4 py-6 flex items-center justify-between">
-      <h1 class="text-2xl font-bold">
-        <span class="text-indigo-600">Brock</span> Engineering
-      </h1>
-
-      <!-- Desktop nav -->
-      <nav class="hidden md:flex gap-8 text-sm">
-        <a href="#why" class="hover:text-indigo-600">Why Us</a>
-        <a href="#how" class="hover:text-indigo-600">How It Works</a>
-        <a href="#contact" class="hover:text-indigo-600">Contact</a>
+<body class="font-sans text-gray-800 tracking-tight scroll-smooth">
+  <!-- ───────── Header ───────── -->
+  <header class="sticky top-0 z-50 backdrop-blur bg-white/80 shadow" x-data="{open:false}">
+    <div class="max-w-7xl mx-auto px-4 lg:px-6 flex items-center justify-between py-3">
+      <a href="#" class="flex items-center gap-2">
+        <img src="brock_logo.png" alt="Brock logo" class="w-9 h-9" />
+        <span class="font-bold text-lg hidden sm:inline">Brock Engineering</span>
+      </a>
+      <nav class="hidden md:flex gap-8 text-sm font-medium">
+        <a href="#services" class="hover:text-indigo-600">Services</a>
+        <a href="#process" class="hover:text-indigo-600">Process</a>
+        <a href="#pricing" class="hover:text-indigo-600">Pricing</a>
+        <a href="#contact" class="hover:text-indigo-600">Quote</a>
       </nav>
-
-      <!-- Mobile burger -->
-      <button class="md:hidden" @click="open = !open" x-data="{open:false}">
-        <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-             viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
-             d="M4 6h16M4 12h16M4 18h16"/></svg>
-        <svg x-show="open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-             viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
-             d="M6 18L18 6M6 6l12 12"/></svg>
-
-        <!-- Mobile menu -->
-        <div x-show="open" @click.away="open=false"
-             class="absolute top-16 right-4 bg-white shadow-lg rounded-xl p-6 space-y-4 md:hidden">
-          <a href="#why" class="block" @click="open=false">Why Us</a>
-          <a href="#how" class="block" @click="open=false">How It Works</a>
-          <a href="#contact" class="block" @click="open=false">Contact</a>
-        </div>
+      <button class="md:hidden" @click="open=!open">
+        <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6h16.5M3.75 12h16.5M3.75 18h16.5" />
+        </svg>
+        <svg x-show="open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
       </button>
+      <!-- Mobile menu -->
+      <div x-show="open" x-transition class="absolute top-16 right-4 bg-white rounded-xl shadow-md p-6 w-48 md:hidden space-y-4">
+        <a @click="open=false" href="#services" class="block">Services</a>
+        <a @click="open=false" href="#process" class="block">Process</a>
+        <a @click="open=false" href="#pricing" class="block">Pricing</a>
+        <a @click="open=false" href="#contact" class="block">Quote</a>
+      </div>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="bg-gradient-to-br from-indigo-600 to-indigo-400 text-white">
-    <div class="max-w-6xl mx-auto px-4 py-24 text-center">
-      <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Boards you can trust, delivered on Scottish time.</h2>
-      <p class="max-w-xl mx-auto mb-8 text-lg">
-        Quick-turn bare PCBs, 100 % electrically tested in Edinburgh and on your bench in 5 days—without
-        the import hassle.
-      </p>
-      <a href="#contact"
-         class="inline-block bg-white text-indigo-600 font-semibold px-8 py-3 rounded-full shadow hover:shadow-lg transition">
-        Get a Same-Day Quote
-      </a>
+  <!-- ───────── Hero ───────── -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-indigo-600 via-indigo-500 to-indigo-400"></div>
+    <div class="absolute inset-0 bg-[url('circuit.svg')] bg-cover opacity-10 mix-blend-soft-light animate-pulse"></div>
+    <div class="relative max-w-7xl mx-auto px-4 lg:px-6 py-28 flex flex-col items-center text-center text-white" data-aos="fade-up">
+      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">Boards you can trust, delivered on Scottish time.</h1>
+      <p class="max-w-2xl text-lg mb-8">Quick‑turn bare PCBs, 100 % electrically tested in Edinburgh and on your bench in <span class="font-semibold">5 days</span>—without the import hassle.</p>
+      <a href="#contact" class="bg-white text-indigo-600 hover:bg-indigo-100 font-semibold px-10 py-4 rounded-full shadow-lg transition">Get a Same‑Day Quote</a>
+    </div>
+    <!-- fancy SVG divider -->
+    <svg class="w-full -mb-1 text-white" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M0 0h1440v60H0z"/></svg>
+  </section>
+
+  <!-- ───────── Stats Bar ───────── -->
+  <section class="bg-white shadow-inner">
+    <div class="max-w-7xl mx-auto px-4 lg:px-6 py-12 grid sm:grid-cols-3 gap-8 text-center">
+      <div data-aos="fade-up">
+        <p class="text-4xl font-extrabold text-indigo-600">2 000 +</p>
+        <p class="text-sm text-gray-500">Boards shipped</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="100">
+        <p class="text-4xl font-extrabold text-indigo-600">98 %</p>
+        <p class="text-sm text-gray-500">First‑pass yield</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="200">
+        <p class="text-4xl font-extrabold text-indigo-600">&lt; 2 h</p>
+        <p class="text-sm text-gray-500">Quote turnaround</p>
+      </div>
     </div>
   </section>
 
-  <!-- Why us -->
-  <section id="why" class="max-w-6xl mx-auto px-4 py-20">
-    <h3 class="text-3xl font-bold text-center mb-12">Why teams switch to Brock Engineering</h3>
+  <!-- ───────── Services ───────── -->
+  <section id="services" class="max-w-7xl mx-auto px-4 lg:px-6 py-24">
+    <h2 class="text-3xl font-bold text-center mb-14" data-aos="fade-up">Why teams choose Brock Engineering</h2>
     <div class="grid md:grid-cols-4 gap-8">
-      <div class="bg-gray-50 p-6 rounded-2xl shadow-sm text-center">
-        <h4 class="font-semibold mb-2">100 % Test</h4>
-        <p>Every net verified on a flying-probe rig <em>before</em> it leaves Edinburgh.</p>
+      <!-- service card -->
+      <div class="bg-gray-50 border border-gray-100 p-8 rounded-3xl shadow-sm text-center" data-aos="fade-up">
+        <svg class="w-12 h-12 mx-auto text-indigo-600 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+        <h3 class="font-semibold mb-2">100 % Electrical Test</h3>
+        <p class="text-sm">Every net verified on a flying‑probe rig before it leaves Edinburgh.</p>
       </div>
-      <div class="bg-gray-50 p-6 rounded-2xl shadow-sm text-center">
-        <h4 class="font-semibold mb-2">5-Day Lead-Time</h4>
-        <p>Prototype panels collected Monday, delivered to your lab Friday.</p>
+      <div class="bg-gray-50 border border-gray-100 p-8 rounded-3xl shadow-sm text-center" data-aos="fade-up" data-aos-delay="100">
+        <svg class="w-12 h-12 mx-auto text-indigo-600 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3"/></svg>
+        <h3 class="font-semibold mb-2">5‑Day Lead Time</h3>
+        <p class="text-sm">Prototype panels collected Monday, delivered Friday.</p>
       </div>
-      <div class="bg-gray-50 p-6 rounded-2xl shadow-sm text-center">
-        <h4 class="font-semibold mb-2">Single UK Invoice</h4>
-        <p>No foreign wire transfers, no customs forms—just one PO in GBP.</p>
+      <div class="bg-gray-50 border border-gray-100 p-8 rounded-3xl shadow-sm text-center" data-aos="fade-up" data-aos-delay="200">
+        <svg class="w-12 h-12 mx-auto text-indigo-600 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h3l1 2h13"/></svg>
+        <h3 class="font-semibold mb-2">Single UK Invoice</h3>
+        <p class="text-sm">No foreign transfers, no customs forms—just one PO in GBP.</p>
       </div>
-      <div class="bg-gray-50 p-6 rounded-2xl shadow-sm text-center">
-        <h4 class="font-semibold mb-2">Engineer-to-Engineer</h4>
-        <p>Free DFM sanity-check by a fellow E & E engineer, not a call-centre script.</p>
+      <div class="bg-gray-50 border border-gray-100 p-8 rounded-3xl shadow-sm text-center" data-aos="fade-up" data-aos-delay="300">
+        <svg class="w-12 h-12 mx-auto text-indigo-600 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+        <h3 class="font-semibold mb-2">Engineer‑to‑Engineer</h3>
+        <p class="text-sm">Free DFM sanity‑check by a fellow E & E engineer—not a call‑centre script.</p>
       </div>
     </div>
   </section>
 
-  <!-- How it works -->
-  <section id="how" class="bg-gray-100 py-20">
-    <div class="max-w-6xl mx-auto px-4">
-      <h3 class="text-3xl font-bold text-center mb-12">Our 3-Step Process</h3>
-      <ol class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-8">
-        <li class="bg-white p-6 rounded-2xl shadow-md">
-          <span class="text-indigo-600 text-4xl font-bold">1</span>
-          <h4 class="font-semibold mt-2 mb-1">Upload Orders</h4>
-          <p>Send your zip file via the form below (NDA available on request).</p>
-        </li>
-        <li class="bg-white p-6 rounded-2xl shadow-md">
-          <span class="text-indigo-600 text-4xl font-bold">2</span>
-          <h4 class="font-semibold mt-2 mb-1">Same-Day Quote & DFM</h4>
-          <p>You get price, lead-time and free design feedback in < 24 h.</p>
-        </li>
-        <li class="bg-white p-6 rounded-2xl shadow-md">
-          <span class="text-indigo-600 text-4xl font-bold">3</span>
-          <h4 class="font-semibold mt-2 mb-1">Tested Boards Delivered</h4>
-          <p>We test, pack and courier boards to your door—ready for assembly.</p>
-        </li>
-      </ol>
+  <!-- ───────── Process Section ───────── -->
+  <section id="process" class="bg-gray-100 py-24">
+    <div class="max-w-7xl mx-auto px-4 lg:px-6">
+      <h2 class="text-3xl font-bold text-center mb-14" data-aos="fade-up">Our seamless 3‑step process</h2>
+      <div class="grid md:grid-cols-3 gap-12">
+        <div class="relative pt-10 md:pt-0" data-aos="fade-right">
+          <span class="absolute -top-10 left-0 md:static text-5xl font-extrabold text-indigo-600">1</span>
+          <h3 class="font-semibold mb-2">Upload Gerbers</h3>
+          <p class="text-sm leading-relaxed">Secure form or NDA e‑mail—your choice. We handle files confidentially.</p>
+        </div>
+        <div class="relative pt-10 md:pt-0" data-aos="fade-up">
+          <span class="absolute -top-10 left-0 md:static text-5xl font-extrabold text-indigo-600">2</span>
+          <h3 class="font-semibold mb-2">Same‑Day Quote & DFM</h3>
+          <p class="text-sm leading-relaxed">You receive pricing, lead time, and design feedback within hours.</p>
+        </div>
+        <div class="relative pt-10 md:pt-0" data-aos="fade-left">
+          <span class="absolute -top-10 left-0 md:static text-5xl font-extrabold text-indigo-600">3</span>
+          <h3 class="font-semibold mb-2">Tested Boards Delivered</h3>
+          <p class="text-sm leading-relaxed">We test, pack, and courier boards door‑to‑door—ready for assembly.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Contact / quote form -->
-  <section id="contact" class="max-w-4xl mx-auto px-4 py-20">
-    <h3 class="text-3xl font-bold text-center mb-8">Request Your Quote</h3>
-    <form action="https://formspree.io/f/your-form-id" method="POST"
-          class="bg-white p-8 rounded-2xl shadow space-y-6">
-      <div class="grid md:grid-cols-2 gap-6">
-        <input required type="text" name="name" placeholder="Name"
-               class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        <input required type="email" name="_replyto" placeholder="Email"
-               class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
+  <!-- ───────── Pricing ───────── -->
+  <section id="pricing" class="max-w-7xl mx-auto px-4 lg:px-6 py-24">
+    <h2 class="text-3xl font-bold text-center mb-14" data-aos="fade-up">Transparent pricing that scales with you</h2>
+    <div class="grid lg:grid-cols-3 gap-8">
+      <!-- card -->
+      <div class="rounded-3xl border shadow p-10 text-center flex flex-col" data-aos="zoom-in">
+        <h3 class="text-xl font-semibold mb-2">Prototype</h3>
+        <p class="text-4xl font-extrabold text-indigo-600 mb-4">£9<span class="text-lg font-medium">/board</span></p>
+        <ul class="text-sm space-y-2 mb-8 flex-1">
+          <li>5‑day turnaround</li>
+          <li>10–100 pcs</li>
+          <li>100 % test</li>
+          <li>Free DFM review</li>
+        </ul>
+        <a href="#contact" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-2 rounded-lg transition">Get Quote</a>
       </div>
+      <!-- highlighted -->
+      <div class="rounded-3xl border-2 border-indigo-600 shadow-lg p-10 text-center flex flex-col" data-aos="zoom-in" data-aos-delay="100">
+        <h3 class="text-xl font-semibold mb-2">Pilot</h3>
+        <p class="text-4xl font-extrabold text-indigo-600 mb-4">£6<span class="text-lg font-medium">/board</span></p>
+        <ul class="text-sm space-y-2 mb-8 flex-1">
+          <li>10‑day turnaround</li>
+          <li>100–1 000 pcs</li>
+          <li>SPC report</li>
+          <li>Impedance coupons</li>
+        </ul>
+        <a href="#contact" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-2 rounded-lg transition">Get Quote</a>
+      </div>
+      <!-- card -->
+      <div class="rounded-3xl border shadow p-10 text-center flex flex-col" data-aos="zoom-in" data-aos-delay="200">
+        <h3 class="text-xl font-semibold mb-2">Production</h3>
+        <p class="text-4xl font-extrabold text-indigo-600 mb-4">Custom</p>
+        <ul class="text-sm space-y-2 mb-8 flex-1">
+          <li>15–18 day turnaround</li>
+          <li>1 000 – 10 000 pcs</li>
+          <li>COC & batch test</li>
+          <li>Optional assembly</li>
+        </ul>
+        <a href="#contact" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-2 rounded-lg transition">Get Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── Contact / Quote form ───────── -->
+  <section id="contact" class="bg-gradient-to-b from-indigo-50 to-white py-24">
+    <div class="max-w-xl mx-auto px-4 lg:px-6" data-aos="fade-up">
+      <h2 class="text-3xl font-bold text-center mb-8">Request your same‑day quote</h2>
+      <form name="quote" method="POST" data-netlify="true" enctype="multipart/form-data" class="bg-white p-10 rounded-3xl shadow-xl space-y-6">
+        <input type="hidden" name="form-name" value="quote" />
+        <div class="grid md:grid-cols-2 gap-6">
+          <input required type="text" name="name" placeholder="Name" class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-indigo-500" />
+          <input required type="email" name="email" placeholder="Email" class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-indigo-500" />
+        </div>
+        <input type="file" name="attachment" class="border border-gray-300 rounded-lg p-3 w-full file:bg-indigo-600 file:text-white file:px-4 file:py-2 file:rounded-lg file:border-0" />
+        <textarea name="message" rows="4" placeholder="Board details, layer count, qty…" class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-indigo-500"></textarea>
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg shadow-lg transition">Send Securely</button>
+      </form>
+      <p class="text-center text-sm mt-6 text-gray-500">Prefer e‑mail? <a href="mailto:quote@brockengineering.org" class="underline">quote@brockengineering.org</a></p>
+    </div>
+  </section>
+
+  <!-- ───────── Footer ───────── -->
+  <footer class="bg-gray-900 text-gray-400 text-sm py-12">
+    <div class="max-w-7xl mx-auto px-4 lg:px-6 grid md:grid-cols-2 gap-12">
       <div>
-        <input type="file" name="attachment"
-               class="border border-gray-300 rounded-lg p-3 w-full file:bg-indigo-600 file:text-white file:px-4 file:py-2 file:rounded file:border-0">
+        <img src="brock_logo.png" alt="logo" class="h-9 mb-4" />
+        <p>Brock Engineering Ltd · Company No. SC123456<br />15 Tech Lane, Edinburgh EH9 1AB · +44 (0)131 555 1234</p>
       </div>
-      <textarea name="message" rows="4" placeholder="Board details, layer count, qty…"
-                class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
-
-      <!-- Honeypot -->
-      <input type="text" name="_gotcha" style="display:none">
-
-      <button type="submit"
-              class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg shadow transition">
-        Send My Files Securely
-      </button>
-    </form>
-
-    <p class="text-center text-sm mt-6 text-gray-500">
-      Prefer e-mail? <a href="mailto:quote@brock-eng.co.uk" class="underline">quote@brock-eng.co.uk</a>
-    </p>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-400 text-sm py-8">
-    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p>&copy; <span id="year"></span> Brock Engineering Ltd. Company No. SC123456. All rights reserved.</p>
-      <p>Made with &lt;3 in Edinburgh.</p>
+      <div class="flex items-center gap-6 md:justify-end">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/iso.svg" alt="ISO 9001" class="h-10 opacity-60" />
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/pcb.svg" alt="RoHS" class="h-10 opacity-60" />
+      </div>
     </div>
-    <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+    <p class="text-center mt-8">© <span id="year"></span> Brock Engineering Ltd. All rights reserved.</p>
   </footer>
+
+  <!-- ───────── Scripts ───────── -->
+  <script>
+    AOS.init({ once: true, duration: 700 });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
